@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34212.112
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{D8B1E2F3-8030-4B7F-BDC9-8EA6CC300203}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactsApp.ContactAPI", "Presentation\ContactsApp.ContactAPI\ContactsApp.ContactAPI.csproj", "{99A508D8-5D8A-4FD2-A5B7-14A0BC435A6F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactsApp.ContactReportAPI", "Presentation\ContactsApp.ContactReportAPI\ContactsApp.ContactReportAPI.csproj", "{F4D6419A-C336-4FAB-AA86-3944E06084C6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactsApp.WebUI", "Presentation\ContactsApp.WebUI\ContactsApp.WebUI.csproj", "{C251DBF4-81C7-40E4-974C-1396FD35468A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AzureFunc", "AzureFunc", "{847BE619-5615-4E5C-BB2E-2DCD26BF188B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExternalServices", "ExternalServices", "{DDDC217A-6866-4C40-A0EE-F59B40760A6C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{D3CBBE31-9991-46A6-8A4E-485A42BFDF92}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsApp.Core", "Library\ContactsApp.Core\ContactsApp.Core.csproj", "{33CC9998-CB15-4839-BD34-95491805DB6F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99A508D8-5D8A-4FD2-A5B7-14A0BC435A6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99A508D8-5D8A-4FD2-A5B7-14A0BC435A6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99A508D8-5D8A-4FD2-A5B7-14A0BC435A6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99A508D8-5D8A-4FD2-A5B7-14A0BC435A6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4D6419A-C336-4FAB-AA86-3944E06084C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4D6419A-C336-4FAB-AA86-3944E06084C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4D6419A-C336-4FAB-AA86-3944E06084C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4D6419A-C336-4FAB-AA86-3944E06084C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C251DBF4-81C7-40E4-974C-1396FD35468A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C251DBF4-81C7-40E4-974C-1396FD35468A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C251DBF4-81C7-40E4-974C-1396FD35468A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C251DBF4-81C7-40E4-974C-1396FD35468A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33CC9998-CB15-4839-BD34-95491805DB6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33CC9998-CB15-4839-BD34-95491805DB6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33CC9998-CB15-4839-BD34-95491805DB6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33CC9998-CB15-4839-BD34-95491805DB6F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{99A508D8-5D8A-4FD2-A5B7-14A0BC435A6F} = {D8B1E2F3-8030-4B7F-BDC9-8EA6CC300203}
+		{F4D6419A-C336-4FAB-AA86-3944E06084C6} = {D8B1E2F3-8030-4B7F-BDC9-8EA6CC300203}
+		{C251DBF4-81C7-40E4-974C-1396FD35468A} = {D8B1E2F3-8030-4B7F-BDC9-8EA6CC300203}
+		{33CC9998-CB15-4839-BD34-95491805DB6F} = {D3CBBE31-9991-46A6-8A4E-485A42BFDF92}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B8C6CADD-3857-4280-8950-5E6F6C4A88D1}
+	EndGlobalSection
+EndGlobal
