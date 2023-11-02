@@ -1,0 +1,41 @@
+﻿@using ContactsApp.Core.Enums
+@using ContactsApp.Entities.Dto
+@model List<ContactReportDto>
+<button onclick="NewContactReport()">Yeni Rapor Talep Et</button>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Talep Edildiği Tarih</th>
+            <th scope="col">Rapor Durumu</th>
+            <th scope="col">İşlem</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model?.Any() == true)
+        {
+            @foreach (var contact in Model)
+            {
+                <tr>
+                    <th>@contact?.Id</th>
+                    <td>@contact?.CreatedAt.ToString("dd.MM.yyyy HH:mm")</td>
+                    <td>@Enum.GetName(typeof(ContactReportStatusEnum), contact?.StatusId)</td>
+                    <td>
+                        @if (contact.StatusId == (int)ContactReportStatusEnum.Tamamlandı)
+                        {
+                            <a href="/contact/get-contact-report-detail?reportId=@contact?.Id">Detay Göster</a>
+                        }
+                        else
+                        {
+                            <button>İşlem devam ediyor</button>
+                        }
+                    </td>
+
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+@section Scripts {
+    <script src="~/js/contact.js" asp-append-version="true"></script>
+}

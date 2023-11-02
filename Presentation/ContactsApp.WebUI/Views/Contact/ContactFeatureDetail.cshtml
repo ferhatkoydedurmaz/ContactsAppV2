@@ -1,0 +1,43 @@
+﻿@using ContactsApp.Entities.Dto
+@model List<ContactFeatureDto>
+@{
+    var phone = Model?.SingleOrDefault(s => s.FeatureType == "PHONE");
+    var email = Model?.SingleOrDefault(s => s.FeatureType == "EMAIL");
+    var address = Model?.SingleOrDefault(s => s.FeatureType == "ADDRESS");
+    string contactId = Context.Request.Query["id"];
+}
+@if (Model is not null)
+{
+    <div>
+        <form id="update-contact-feature-form" action="/contact/update-contact-feature">
+            @Html.AntiForgeryToken()
+            <div class="form-group mb-2">
+                <label>Telefon Numarası</label>
+                <input type="hidden" class="form-control" name="ContactFeatures[0].ContactId" value="@contactId">
+                <input type="hidden" class="form-control" name="ContactFeatures[0].FeatureType" value="PHONE">
+                <input type="text" class="form-control phone-number" name="ContactFeatures[0].FeatureInformation" placeholder="Telefon" value="@phone?.FeatureInformation" data-validation="true" data-type="phone">
+                <div class="err-valid-msg text-danger text-small d-none" data-message="Girdiğiniz telefon numarası kontrol ediniz."></div>
+            </div>
+            <div class="form-group mb-2">
+                <label>E-posta Adresi</label>
+                <input type="hidden" class="form-control" name="ContactFeatures[1].ContactId" value="@contactId">
+                <input type="hidden" class="form-control" name="ContactFeatures[1].FeatureType" value="EMAIL">
+                <input type="text" class="form-control" name="ContactFeatures[1].FeatureInformation" placeholder="E-posta" value="@email?.FeatureInformation" data-validation="true" data-type="email">
+                <div class="err-valid-msg text-danger text-small d-none" data-message="Girdiğiniz e-posta adresini kontrol ediniz."></div>
+            </div>
+            <div class="form-group">
+                <label>Konum</label>
+                <input type="hidden" class="form-control" name="ContactFeatures[2].ContactId" value="@contactId">
+                <input type="hidden" class="form-control" name="ContactFeatures[2].FeatureType" value="ADDRESS">
+                <input type="text" class="form-control" name="ContactFeatures[2].FeatureInformation" placeholder="Konum" value="@address?.FeatureInformation">
+                <div class="err-valid-msg text-danger text-small d-none"></div>
+            </div>
+            <button type="submit" class="btn btn-primary mt-2">Güncelle</button>
+        </form>
+    </div>
+}
+@section Scripts {
+    <script src="~/js/contact.js" asp-append-version="true"></script>
+    <script src="~/js/validation.js" asp-append-version="true"></script>
+    <script src="~/js/vanillatextmask.js"></script>
+}

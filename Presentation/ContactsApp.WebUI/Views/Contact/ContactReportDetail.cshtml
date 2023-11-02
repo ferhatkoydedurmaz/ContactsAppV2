@@ -1,0 +1,30 @@
+﻿@using ContactsApp.Core.Enums
+@using ContactsApp.Entities.Dto
+@model List<ContactReportDetailDto>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Konum</th>
+            <th scope="col">Telefon Numara Sayısı</th>
+            <th scope="col">Kayıtlı Kişi Sayısı</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model?.Any() == true)
+        {
+            @foreach (var report in Model)
+            {
+                <tr>
+                    <th>@report?.Address</th>
+                    <td>@report?.PhoneCount</td>
+                    <td>@report.ContactCount</td>
+                    
+
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+@section Scripts {
+    <script src="~/js/contact.js" asp-append-version="true"></script>
+}

@@ -8,10 +8,10 @@ namespace ContactsApp.ContactReportAPI.Services;
 
 public class ContactReportService
 {
-    private readonly ContactReportRespository _contactReportRepository;
+    private readonly ContactReportRepository _contactReportRepository;
     private readonly IQueueServiceHelper _queueServiceHelper;
 
-    public ContactReportService(ContactReportRespository contactReportRepository, IQueueServiceHelper queueServiceHelper)
+    public ContactReportService(ContactReportRepository contactReportRepository, IQueueServiceHelper queueServiceHelper)
     {
         _contactReportRepository = contactReportRepository;
         _queueServiceHelper = queueServiceHelper;

@@ -13,7 +13,7 @@ public class ContactFeatureService
         _baseService = baseService;
     }
 
-    public async Task<BaseDataResponse<List<ContactFeature>>> GetContactFeaturesByContactIdAsync()
+    public async Task<BaseDataResponse<List<ContactFeature>>> GetContactFeaturesByContactIdAsync(string id)
     {
         var result = await _baseService.DoGetRequest<List<ContactFeature>>(ApiHttpClientNameConstant.ContactsAPI, "api/contactfeatures");
 

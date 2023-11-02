@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace ContactsApp.ContactReportAPI.Repositories;
 
-public class ContactReportRespository
+public class ContactReportRepository
 {
     private readonly ContactReportContext _context;
 
-    public ContactReportRespository(ContactReportContext context)
+    public ContactReportRepository(ContactReportContext context)
     {
         _context = context;
     }

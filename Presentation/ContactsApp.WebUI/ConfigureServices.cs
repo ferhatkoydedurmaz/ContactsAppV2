@@ -1,10 +1,11 @@
 ﻿using ContactsApp.Core.Utitilies.Contants;
+using ContactsApp.WebUI.Services;
 
 namespace ContactsApp.WebUI;
 
 public static class ConfigureServices
 {
-    public static void Configure(this IServiceCollection services, IConfiguration configuration)
+    public static void Configure(this IServiceCollection services)
     {
         services.AddHttpClient(ApiHttpClientNameConstant.ContactsAPI, opt =>
         {
@@ -15,6 +16,11 @@ public static class ConfigureServices
         {
             opt.BaseAddress = new Uri(ApiEndpointConstant.ContactsReportAPI);
         });
+
+        services.AddScoped<BaseService>();
+        services.AddScoped<ContactService>();
+        services.AddScoped<ContactFeatureService>();
+        services.AddScoped<ContactReportService>();
 
     }
 }
