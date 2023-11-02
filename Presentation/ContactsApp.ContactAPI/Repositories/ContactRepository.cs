@@ -51,7 +51,7 @@ public class ContactRepository
         return true;
     }
 
-    public async Task<bool> DeleteContactAsync(int id)
+    public async Task<bool> DeleteContactAsync(string id)
     {
         var contact = await _context.Contacts.FindAsync(id);
 

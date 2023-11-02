@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ContactsApp.ContactAPI.Models;
+using ContactsApp.ContactAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ContactsApp.ContactAPI.Controllers;
@@ -6,15 +7,31 @@ namespace ContactsApp.ContactAPI.Controllers;
 [ApiController]
 public class ContactFeatureController : ControllerBase
 {
+    private readonly ContactFeatureService _contactFeatureService;
+
+    public ContactFeatureController(ContactFeatureService contactFeatureService)
+    {
+        _contactFeatureService = contactFeatureService;
+    }
 
     [HttpGet("contact-details")]
-    public async Task<IActionResult> GetContact()
+    public async Task<IActionResult> GetContactFeatures([FromQuery] string id)
     {
-        return Ok();
+        var result = await _contactFeatureService.GetContactFeaturesByContactId(id);
+
+        if (result.Success == false)
+            return BadRequest(result);
+
+        return Ok(result);
     }
     [HttpPost("contact-details")]
-    public async Task<IActionResult> AddOrUpdateContact()
+    public async Task<IActionResult> AddOrUpdateContact(ContactFeatureList model)
     {
-        return Ok();
+        var result = await _contactFeatureService.AddOrUpdateAsync(model);
+
+        if (result.Success == false)
+            return BadRequest(result);
+
+        return Ok(result);
     }
 }
