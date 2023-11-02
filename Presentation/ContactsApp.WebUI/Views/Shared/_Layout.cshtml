@@ -23,7 +23,13 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" href="/contact/add-contact">Kayıt Ekle</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="/contact/contacts-listing">Kişiler</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="/contact/contact-report-listing">Raporlar</a>
                         </li>
                     </ul>
                 </div>
@@ -44,6 +50,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/app.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

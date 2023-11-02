@@ -13,15 +13,15 @@ public class ContactService
         _baseService = baseService;
     }
 
-    public async Task<BaseDataResponse<List<Contact>>> GetAllContactAsync()
+    public async Task<BaseDataResponse<IEnumerable<Contact>>> GetAllContactAsync()
     {
-        var result = await _baseService.DoGetRequest<List<Contact>>(ApiHttpClientNameConstant.ContactsAPI, "api/contacts");
+        var result = await _baseService.DoGetRequest<IEnumerable<Contact>>(ApiHttpClientNameConstant.ContactsAPI, "api/contacts");
 
         return result;
     }
     public async Task<BaseDataResponse<Contact>> GetContactById(string contactId)
     {
-        var result = await _baseService.DoGetRequest<Contact>(ApiHttpClientNameConstant.ContactsAPI, $"api/contacts?id={contactId}");
+        var result = await _baseService.DoGetRequest<Contact>(ApiHttpClientNameConstant.ContactsAPI, $"api/contactbyid?id={contactId}");
 
         return result;
     }

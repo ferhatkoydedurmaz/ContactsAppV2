@@ -1,11 +1,11 @@
 ﻿
-async function postAsJsonAsyncWithToken(url, data, contentType = 'application/json') {
+async function baseRequestAsJsonAsyncWithToken(url, data, method = 'POST', contentType = 'application/json') {
     try {
 
         const antiForgeryToken = document.querySelector('input[name="__RequestVerificationToken"]').value;
 
         var response = await fetch(url, {
-            method: 'POST',
+            method: method,
             headers: {
                 'Content-Type': contentType,
                 'RequestVerificationToken': antiForgeryToken
@@ -24,11 +24,11 @@ async function postAsJsonAsyncWithToken(url, data, contentType = 'application/js
     }
 }
 
-async function postAsJsonAsync(url, data, contentType = 'application/json') {
+async function baseRequestAsJsonAsync(url, data, method = 'POST', contentType = 'application/json') {
     try {
 
         var response = await fetch(url, {
-            method: 'POST',
+            method: method,
             headers: {
                 'Content-Type': contentType
             },

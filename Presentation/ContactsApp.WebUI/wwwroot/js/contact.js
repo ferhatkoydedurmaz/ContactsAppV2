@@ -21,7 +21,7 @@ async function AddContact() {
 
         console.log(data);
 
-        await postAsJsonAsyncWithToken(form.target.action, data, 'application/x-www-form-urlencoded')
+        await baseRequestAsJsonAsyncWithToken(form.target.action, data, 'POST', 'application/x-www-form-urlencoded')
             .then((res) => {
                 if (res.success)
                     location.reload();
@@ -51,7 +51,7 @@ async function UpdateContact() {
 
         console.log(data);
 
-        await postAsJsonAsyncWithToken(form.target.action, data, 'application/x-www-form-urlencoded')
+        await baseRequestAsJsonAsyncWithToken(form.target.action, data, 'PUT',  'application/x-www-form-urlencoded')
             .then((res) => {
                 if (res.success)
                     location.reload();
@@ -81,7 +81,7 @@ async function UpdateContactFeature() {
 
         console.log(data);
 
-        await postAsJsonAsyncWithToken(form.target.action, data, 'application/x-www-form-urlencoded')
+        await baseRequestAsJsonAsyncWithToken(form.target.action, data, 'PUT', 'application/x-www-form-urlencoded')
             .then((res) => {
                 if (res.success)
                     location.reload();
@@ -102,7 +102,7 @@ async function DeleteContact(el) {
 
     if (!id) return;
 
-    await postAsJsonAsync(url, JSON.stringify(id))
+    await baseRequestAsJsonAsync(url, JSON.stringify(id), 'DELETE')
         .then((res) => {
             if (res.success)
                 location.reload();

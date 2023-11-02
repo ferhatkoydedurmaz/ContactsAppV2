@@ -20,9 +20,9 @@ public class ContactReportRepository
         return result;
     }
 
-    public async Task<ContactReport> GetContactReportAsync(int id)
+    public async Task<ContactReport> GetContactReportAsync(string id)
     {
-        var result = await _context.ContactReports.FindAsync(id);
+        var result = await _context.ContactReports.FindAsync(Guid.Parse(id));
 
         return result;
     }

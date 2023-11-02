@@ -22,7 +22,7 @@ public class ContactService
         return new BaseDataResponse<IEnumerable<Contact>>(result, true);
     }
 
-    public async Task<BaseDataResponse<Contact>> GetContactAsync(int id)
+    public async Task<BaseDataResponse<Contact>> GetContactAsync(string id)
     {
         var result = await _contactRepository.GetContactAsync(id);
 

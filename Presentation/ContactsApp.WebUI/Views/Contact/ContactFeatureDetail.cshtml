@@ -1,5 +1,4 @@
-﻿@using ContactsApp.Entities.Dto
-@model List<ContactFeatureDto>
+﻿@model List<ContactFeature>
 @{
     var phone = Model?.SingleOrDefault(s => s.FeatureType == "PHONE");
     var email = Model?.SingleOrDefault(s => s.FeatureType == "EMAIL");

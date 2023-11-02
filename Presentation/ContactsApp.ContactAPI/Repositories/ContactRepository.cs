@@ -20,9 +20,9 @@ public class ContactRepository
         return result;
     }
 
-    public async Task<Contact> GetContactAsync(int id)
+    public async Task<Contact> GetContactAsync(string id)
     {
-        var result = await _context.Contacts.FindAsync(id);
+        var result = await _context.Contacts.FindAsync(Guid.Parse(id));
 
         return result;
     }
@@ -53,7 +53,7 @@ public class ContactRepository
 
     public async Task<bool> DeleteContactAsync(string id)
     {
-        var contact = await _context.Contacts.FindAsync(id);
+        var contact = await _context.Contacts.FindAsync(Guid.Parse(id));
 
         if (contact == null)
             return false;

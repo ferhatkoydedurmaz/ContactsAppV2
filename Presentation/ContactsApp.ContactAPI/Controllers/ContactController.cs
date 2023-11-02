@@ -24,6 +24,18 @@ public class ContactController : ControllerBase
 
         return Ok(result);
     }
+
+    [HttpGet("contactbyid")]
+    public async Task<IActionResult> GetContactById([FromQuery] string id)
+    {
+        var result = await _contactService.GetContactAsync(id);
+
+        if (result.Success == false)
+            return BadRequest(result);
+
+        return Ok(result);
+    }
+
     [HttpPost("contacts")]
     public async Task<IActionResult> AddContact(Contact model)
     {

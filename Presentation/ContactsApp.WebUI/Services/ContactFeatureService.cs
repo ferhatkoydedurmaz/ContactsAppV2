@@ -13,15 +13,15 @@ public class ContactFeatureService
         _baseService = baseService;
     }
 
-    public async Task<BaseDataResponse<List<ContactFeature>>> GetContactFeaturesByContactIdAsync(string id)
+    public async Task<BaseDataResponse<IEnumerable<ContactFeature>>> GetContactFeaturesByContactIdAsync(string id)
     {
-        var result = await _baseService.DoGetRequest<List<ContactFeature>>(ApiHttpClientNameConstant.ContactsAPI, "api/contactfeatures");
+        var result = await _baseService.DoGetRequest<IEnumerable<ContactFeature>>(ApiHttpClientNameConstant.ContactsAPI, $"api/contact-details?id={id}");
 
         return result;
     }
-    public async Task<BaseResponse> AddContactFeaturesAsync(ContactFeatureList model)
+    public async Task<BaseDataResponse<ContactFeatureList>> AddOrUpdateContactFeaturesAsync(ContactFeatureList model)
     {
-        var result = await _baseService.DoPostRequest(ApiHttpClientNameConstant.ContactsAPI, "api/contactfeatures", model);
+        var result = await _baseService.DoPostRequest<ContactFeatureList,ContactFeatureList>(ApiHttpClientNameConstant.ContactsAPI, "api/contact-details", model);
 
         return result;
     }

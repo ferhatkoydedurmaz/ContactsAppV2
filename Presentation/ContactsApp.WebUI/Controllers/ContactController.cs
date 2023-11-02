@@ -52,10 +52,8 @@ public class ContactController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> UpdateContactFeature(ContactFeatureList model)
     {
-        if (ModelState.IsValid == false)
-            return BadRequest();
-
-        var result = await _contactFeatureService.AddContactFeaturesAsync(model);
+        
+        var result = await _contactFeatureService.AddOrUpdateContactFeaturesAsync(model);
 
         return Json(result);
     }

@@ -13,23 +13,23 @@ public class ContactReportService
         _baseService = baseService;
     }
 
-    public async Task<BaseDataResponse<List<ContactReport>>> GetAllReportAsync()
+    public async Task<BaseDataResponse<IEnumerable<ContactReport>>> GetAllReportAsync()
     {
-        var result = await _baseService.DoGetRequest<List<ContactReport>>(ApiHttpClientNameConstant.ContactsReportAPI, "api/contactreports");
+        var result = await _baseService.DoGetRequest<IEnumerable<ContactReport>>(ApiHttpClientNameConstant.ContactsReportAPI, "api/reports");
 
         return result;
     }
 
-    public async Task<BaseDataResponse<List<ContactReportDetail>>> GetContactReportDetailAsync(string reportId)
+    public async Task<BaseDataResponse<IEnumerable<ContactReportDetail>>> GetContactReportDetailAsync(string reportId)
     {
-        var result = await _baseService.DoGetRequest<List<ContactReportDetail>>(ApiHttpClientNameConstant.ContactsReportAPI, "api/contactreports");
+        var result = await _baseService.DoGetRequest<IEnumerable<ContactReportDetail>>(ApiHttpClientNameConstant.ContactsReportAPI, $"api/reportdetails?id={reportId}");
 
         return result;
     }
 
-    public async Task<BaseResponse> CreateContactReportAsync()
+    public async Task<BaseDataResponse<string>> CreateContactReportAsync()
     {
-        var result = await _baseService.DoGetRequest(ApiHttpClientNameConstant.ContactsReportAPI, "api/create-report");
+        var result = await _baseService.DoGetRequest<string>(ApiHttpClientNameConstant.ContactsReportAPI, "api/create-report");
 
         return result;
     }
