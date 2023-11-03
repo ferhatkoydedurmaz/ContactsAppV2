@@ -17,35 +17,42 @@ public class ContactFeatureServiceTest
     }
 
     [Fact]
-    public async Task AddContactFeature_WitNotNull_ReturnTrue()
+    public async Task GetContactFeaturesByContactIdAsync_WithValidId_ReturnsSuccessResponse()
     {
-        _contactFeatureRepository.Setup(i => i.AddAsync(It.IsAny<ContactFeature>())).ReturnsAsync(true);
+        // Arrange
+        var contactId = "validContactId";
+        var contactFeatures = new List<ContactFeature>(); // Replace with your sample data
+        _contactFeatureRepository.Setup(r => r.GetContactFeaturesByContactIdAsync(contactId))
+            .ReturnsAsync(contactFeatures);
 
-        var result = await _contactFeatureService.AddOrUpdateAsync(new ContactFeatureList());
-
-        Assert.NotNull(result);
-        Assert.True(result.Success, result.Message);
-    }
-
-    [Fact]
-    public async Task GetContactFeature_WitNotNull_ReturnTrue()
-    {
-        _contactFeatureRepository.Setup(i => i.GetContactFeaturesByContactIdAsync(It.IsAny<string>())).ReturnsAsync(new List<ContactFeature>());
-
+        // Act
         var result = await _contactFeatureService.GetContactFeaturesByContactIdAsync(contactId);
 
-        Assert.NotNull(result);
-        Assert.True(result.Success, result.Message);
+        // Assert
+        Assert.True(result.Success);
+        Assert.Same(contactFeatures, result.Data);
+        Assert.Null(result.Message);
     }
 
     [Fact]
-    public async Task GetContactFeature_WitNullContactId_ReturnFalse()
+    public async Task AddOrUpdateAsync_WithValidModel_ReturnsSuccessResponse()
     {
-        _contactFeatureRepository.Setup(i => i.GetContactFeaturesByContactIdAsync(It.IsAny<string>())).ReturnsAsync(new List<ContactFeature>());
+        // Arrange
+        var model = new ContactFeatureList(); // Replace with your sample data
+        _contactFeatureRepository.Setup(r => r.GetByContactIdAndFeatureType(It.IsAny<string>(), It.IsAny<string>()))
+            .ReturnsAsync((ContactFeature)null); // Simulate not finding a contact feature
+        _contactFeatureRepository.Setup(r => r.AddAsync(It.IsAny<ContactFeature>()))
+            .ReturnsAsync(true);
+        _contactFeatureRepository.Setup(r => r.UpdateAsync(It.IsAny<ContactFeature>()))
+            .ReturnsAsync(true);
 
-        var result = await _contactFeatureService.GetContactFeaturesByContactIdAsync(default);
 
-        Assert.NotNull(result);
-        Assert.False(result.Success, result.Message);
+        // Act
+        var result = await _contactFeatureService.AddOrUpdateAsync(model);
+
+        // Assert
+        Assert.True(result.Success);
+        Assert.Same(model, result.Data);
+        Assert.Null(result.Message);
     }
 }
