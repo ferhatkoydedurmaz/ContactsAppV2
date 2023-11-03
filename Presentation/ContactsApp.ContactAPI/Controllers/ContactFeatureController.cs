@@ -7,9 +7,9 @@ namespace ContactsApp.ContactAPI.Controllers;
 [ApiController]
 public class ContactFeatureController : ControllerBase
 {
-    private readonly ContactFeatureService _contactFeatureService;
+    private readonly IContactFeatureService _contactFeatureService;
 
-    public ContactFeatureController(ContactFeatureService contactFeatureService)
+    public ContactFeatureController(IContactFeatureService contactFeatureService)
     {
         _contactFeatureService = contactFeatureService;
     }
@@ -17,7 +17,7 @@ public class ContactFeatureController : ControllerBase
     [HttpGet("contact-details")]
     public async Task<IActionResult> GetContactFeatures([FromQuery] string id)
     {
-        var result = await _contactFeatureService.GetContactFeaturesByContactId(id);
+        var result = await _contactFeatureService.GetContactFeaturesByContactIdAsync(id);
 
         if (result.Success == false)
             return BadRequest(result);

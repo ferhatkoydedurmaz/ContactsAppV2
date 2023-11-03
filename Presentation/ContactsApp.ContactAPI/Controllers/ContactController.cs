@@ -7,15 +7,15 @@ namespace ContactsApp.ContactAPI.Controllers;
 [ApiController]
 public class ContactController : ControllerBase
 {
-    private readonly ContactService _contactService;
+    private readonly IContactService _contactService;
 
-    public ContactController(ContactService contactService)
+    public ContactController(IContactService contactService)
     {
         _contactService = contactService;
     }
 
     [HttpGet("contacts")]
-    public async Task<IActionResult> GetContact()
+    public async Task<IActionResult> GetContacts()
     {
         var result = await _contactService.GetContactsAsync();
 

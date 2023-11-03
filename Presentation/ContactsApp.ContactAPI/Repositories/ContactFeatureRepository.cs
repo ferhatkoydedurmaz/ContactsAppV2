@@ -5,7 +5,14 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace ContactsApp.ContactAPI.Repositories;
 
-public class ContactFeatureRepository
+public interface IContactFeatureRepository
+{
+    Task<IEnumerable<ContactFeature>> GetContactFeaturesByContactIdAsync(string contactId);
+    Task<ContactFeature> GetByContactIdAndFeatureType(string contactId, string featureType);
+    Task<bool> AddAsync(ContactFeature model);
+    Task<bool> UpdateAsync(ContactFeature model);
+}
+public class ContactFeatureRepository: IContactFeatureRepository
 {
     private readonly ContactContext _context;
 

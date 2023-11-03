@@ -5,12 +5,18 @@ using ContactsApp.Core.Results;
 
 namespace ContactsApp.ContactReportAPI.Services;
 
-public class ContactReportDetailService
+public interface IContactReportDetailService
 {
-    private readonly ContactReportDetailRepository _contactReportDetailRepository;
-    private readonly ContactReportService _contactReportService;
+    Task CreateReportDetailAsync(List<ContactReportDetail> reportDetails);
+    Task<BaseDataResponse<List<ContactReportDetail>>> GetContactReportDetailsByReportIdAsync(string reportId);
+}
 
-    public ContactReportDetailService(ContactReportDetailRepository contactReportDetailRepository, ContactReportService contactReportService)
+public class ContactReportDetailService: IContactReportDetailService
+{
+    private readonly IContactReportDetailRepository _contactReportDetailRepository;
+    private readonly IContactReportService _contactReportService;
+
+    public ContactReportDetailService(IContactReportDetailRepository contactReportDetailRepository, IContactReportService contactReportService)
     {
         _contactReportDetailRepository = contactReportDetailRepository;
         _contactReportService = contactReportService;

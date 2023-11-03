@@ -16,12 +16,13 @@ public static class ConfigureServices
             opt.UseNpgsql(configuration.GetConnectionString("defaultConnStr"));
         });
 
+        services.AddSingleton<IContactReportContext, ContactReportContext>();
         services.AddSingleton<IQueueServiceHelper, QueueServiceHelper>();
 
-        services.AddScoped<ContactReportDetailRepository>();
-        services.AddScoped<ContactReportRepository>();
+        services.AddScoped<IContactReportDetailRepository,ContactReportDetailRepository>();
+        services.AddScoped<IContactReportRepository,ContactReportRepository>();
 
-        services.AddScoped<ContactReportService>();
-        services.AddScoped<ContactReportDetailService>();
+        services.AddScoped<IContactReportService,ContactReportService>();
+        services.AddScoped<IContactReportDetailService,ContactReportDetailService>();
     }
 }

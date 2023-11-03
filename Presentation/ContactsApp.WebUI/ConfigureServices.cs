@@ -18,9 +18,9 @@ public static class ConfigureServices
         });
 
         services.AddScoped<BaseService>();
-        services.AddScoped<ContactService>();
-        services.AddScoped<ContactFeatureService>();
-        services.AddScoped<ContactReportService>();
+        services.AddScoped<IContactService,ContactService>();
+        services.AddScoped<IContactFeatureService,ContactFeatureService>();
+        services.AddScoped<IContactReportService,ContactReportService>();
 
     }
 }

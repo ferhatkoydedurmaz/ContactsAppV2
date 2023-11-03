@@ -6,12 +6,18 @@ using ContactsApp.QueueService.QueueService;
 
 namespace ContactsApp.ContactReportAPI.Services;
 
-public class ContactReportService
+public interface IContactReportService
 {
-    private readonly ContactReportRepository _contactReportRepository;
+    Task<BaseDataResponse<string>> CreateReport();
+    Task<BaseDataResponse<IEnumerable<ContactReport>>> GetReportsAsync();
+    Task UpdateStatus(string reportId, ContactReportStatusEnum status);
+}
+public class ContactReportService: IContactReportService
+{
+    private readonly IContactReportRepository _contactReportRepository;
     private readonly IQueueServiceHelper _queueServiceHelper;
 
-    public ContactReportService(ContactReportRepository contactReportRepository, IQueueServiceHelper queueServiceHelper)
+    public ContactReportService(IContactReportRepository contactReportRepository, IQueueServiceHelper queueServiceHelper)
     {
         _contactReportRepository = contactReportRepository;
         _queueServiceHelper = queueServiceHelper;
@@ -25,6 +31,9 @@ public class ContactReportService
         };
 
         var result = await _contactReportRepository.AddContactReportAsync(report);
+
+        if(result is null)
+            return new BaseDataResponse<string>(default, false, "Report could not be created");
 
         await _queueServiceHelper.SendQueueMessage("contactreport", result.Id.ToString());
 

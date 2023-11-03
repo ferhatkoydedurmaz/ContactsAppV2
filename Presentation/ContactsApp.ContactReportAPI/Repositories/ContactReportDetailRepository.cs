@@ -4,7 +4,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ContactsApp.ContactReportAPI.Repositories;
 
-public class ContactReportDetailRepository
+public interface IContactReportDetailRepository
+{
+    Task<bool> AddAsync(List<ContactReportDetail> reportDetails);
+    Task<List<ContactReportDetail>> ContactReportDetailsByReportIdAsync(string reportId);
+}
+public class ContactReportDetailRepository: IContactReportDetailRepository
 {
     private readonly ContactReportContext _context;
 

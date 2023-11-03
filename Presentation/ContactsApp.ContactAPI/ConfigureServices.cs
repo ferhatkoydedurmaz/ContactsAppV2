@@ -14,11 +14,13 @@ public static class ConfigureServices
             opt.UseNpgsql(configuration.GetConnectionString("defaultConnStr"));
         });
 
-        services.AddScoped<ContactRepository>();
-        services.AddScoped<ContactFeatureRepository>();
+        services.AddScoped<IContactContext, ContactContext>();
 
-        services.AddScoped<ContactService>();
-        services.AddScoped<ContactFeatureService>();
+        services.AddScoped<IContactRepository, ContactRepository>();
+        services.AddScoped<IContactFeatureRepository, ContactFeatureRepository>();
+
+        services.AddScoped<IContactService, ContactService>();
+        services.AddScoped<IContactFeatureService, ContactFeatureService>();
     }
 
 }

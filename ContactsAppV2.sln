@@ -21,7 +21,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactsApp.Core", "Library
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactsApp.QueueService", "ContactsApp.QueueService\ContactsApp.QueueService.csproj", "{AACC09A6-94C3-43C8-B3F9-25DBA11B6EE5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureFunc.ContactReport", "AzureFunc\AzureFunc.ContactReport\AzureFunc.ContactReport.csproj", "{D1898300-ABE1-44A1-8DBB-1622A2C0FA75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureFunc.ContactReport", "AzureFunc\AzureFunc.ContactReport\AzureFunc.ContactReport.csproj", "{D1898300-ABE1-44A1-8DBB-1622A2C0FA75}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{891A2E99-D5FF-40F2-B4A3-13F1727C517E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactsApp.Tests", "Tests\ContactsApp.Tests\ContactsApp.Tests.csproj", "{7F14D456-E50A-4DEE-BA1B-B16007E8160D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +57,10 @@ Global
 		{D1898300-ABE1-44A1-8DBB-1622A2C0FA75}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1898300-ABE1-44A1-8DBB-1622A2C0FA75}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1898300-ABE1-44A1-8DBB-1622A2C0FA75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F14D456-E50A-4DEE-BA1B-B16007E8160D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F14D456-E50A-4DEE-BA1B-B16007E8160D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F14D456-E50A-4DEE-BA1B-B16007E8160D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F14D456-E50A-4DEE-BA1B-B16007E8160D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +72,7 @@ Global
 		{33CC9998-CB15-4839-BD34-95491805DB6F} = {D3CBBE31-9991-46A6-8A4E-485A42BFDF92}
 		{AACC09A6-94C3-43C8-B3F9-25DBA11B6EE5} = {DDDC217A-6866-4C40-A0EE-F59B40760A6C}
 		{D1898300-ABE1-44A1-8DBB-1622A2C0FA75} = {847BE619-5615-4E5C-BB2E-2DCD26BF188B}
+		{7F14D456-E50A-4DEE-BA1B-B16007E8160D} = {891A2E99-D5FF-40F2-B4A3-13F1727C517E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B8C6CADD-3857-4280-8950-5E6F6C4A88D1}

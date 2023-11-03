@@ -7,10 +7,10 @@ namespace ContactsApp.ContactReportAPI.Controllers;
 [ApiController]
 public class ContactReportController : ControllerBase
 {
-    private readonly ContactReportService _contactReportService;
-    private readonly ContactReportDetailService _contactReportDetailService;
+    private readonly IContactReportService _contactReportService;
+    private readonly IContactReportDetailService _contactReportDetailService;
 
-    public ContactReportController(ContactReportDetailService contactReportDetailService, ContactReportService contactReportService)
+    public ContactReportController(IContactReportDetailService contactReportDetailService, IContactReportService contactReportService)
     {
         _contactReportDetailService = contactReportDetailService;
         _contactReportService = contactReportService;

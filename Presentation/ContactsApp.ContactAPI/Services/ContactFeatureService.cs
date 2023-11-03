@@ -3,17 +3,21 @@ using ContactsApp.ContactAPI.Repositories;
 using ContactsApp.Core.Results;
 
 namespace ContactsApp.ContactAPI.Services;
-
-public class ContactFeatureService
+public interface IContactFeatureService
 {
-    private readonly ContactFeatureRepository _contactFeatureRepository;
+    Task<BaseDataResponse<IEnumerable<ContactFeature>>> GetContactFeaturesByContactIdAsync(string contactId);
+    Task<BaseDataResponse<ContactFeatureList>> AddOrUpdateAsync(ContactFeatureList model);
+}
+public class ContactFeatureService: IContactFeatureService
+{
+    private readonly IContactFeatureRepository _contactFeatureRepository;
 
-    public ContactFeatureService(ContactFeatureRepository contactFeatureRepository)
+    public ContactFeatureService(IContactFeatureRepository contactFeatureRepository)
     {
         _contactFeatureRepository = contactFeatureRepository;
     }
 
-    public async Task<BaseDataResponse<IEnumerable<ContactFeature>>> GetContactFeaturesByContactId(string contactId)
+    public async Task<BaseDataResponse<IEnumerable<ContactFeature>>> GetContactFeaturesByContactIdAsync(string contactId)
     {
         try
         {
@@ -37,7 +41,7 @@ public class ContactFeatureService
             foreach (var feature in model.ContactFeatures)
             {
 
-                var contactFeature = await GetContactFeatureByContactIdAndFeatureType(feature.ContactId.ToString(), feature.FeatureType);
+                var contactFeature = await GetContactFeatureByContactIdAndFeatureTypeAsync(feature.ContactId.ToString(), feature.FeatureType);
 
                 if (contactFeature is null)
                     await _contactFeatureRepository.AddAsync(feature);
@@ -57,7 +61,7 @@ public class ContactFeatureService
             return new BaseDataResponse<ContactFeatureList>(default, false, "Beklenmedik bir hata oluştu");
         }
     }
-    private async Task<ContactFeature> GetContactFeatureByContactIdAndFeatureType(string contactId, string featureType)
+    private async Task<ContactFeature> GetContactFeatureByContactIdAndFeatureTypeAsync(string contactId, string featureType)
     {
         var result = await _contactFeatureRepository.GetByContactIdAndFeatureType(contactId, featureType);
 

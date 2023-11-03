@@ -1,4 +1,5 @@
-﻿using ContactsApp.WebUI.Models;
+﻿using ContactsApp.Core.Results;
+using ContactsApp.WebUI.Models;
 using ContactsApp.WebUI.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,11 +7,11 @@ namespace ContactsApp.WebUI.Controllers;
 [Route("contact")]
 public class ContactController : Controller
 {
-    private readonly ContactService _contactService;
-    private readonly ContactFeatureService _contactFeatureService;
-    private readonly ContactReportService _contactReportService;
+    private readonly IContactService _contactService;
+    private readonly IContactFeatureService _contactFeatureService;
+    private readonly IContactReportService _contactReportService;
 
-    public ContactController(ContactReportService contactReportService, ContactFeatureService contactFeatureService, ContactService contactService)
+    public ContactController(IContactReportService contactReportService, IContactFeatureService contactFeatureService, IContactService contactService)
     {
         _contactReportService = contactReportService;
         _contactFeatureService = contactFeatureService;
@@ -22,9 +23,12 @@ public class ContactController : Controller
     public async Task<IActionResult> AddContact(Contact model)
     {
         if (ModelState.IsValid == false)
-            return BadRequest();
+            return new BadRequestObjectResult(new BaseResponse(false));
 
         var result = await _contactService.AddContactAsync(model);
+
+        if(result.Success == false)
+            return new BadRequestObjectResult(result);
 
         return Json(result);
     }
@@ -33,6 +37,10 @@ public class ContactController : Controller
     public async Task<IActionResult> DeleteContact([FromBody] string id)
     {
         var result = await _contactService.DeleteContactAsync(id);
+
+        if (result.Success == false)
+            return new BadRequestObjectResult(result);
+
         return Json(result);
     }
 
@@ -41,9 +49,12 @@ public class ContactController : Controller
     public async Task<IActionResult> UpdateContact(Contact model)
     {
         if (ModelState.IsValid == false)
-            return BadRequest();
+            return new BadRequestObjectResult(new BaseResponse(false));
 
         var result = await _contactService.UpdateContactAsync(model);
+
+        if (result.Success == false)
+            return new BadRequestObjectResult(result);
 
         return Json(result);
     }
@@ -54,6 +65,9 @@ public class ContactController : Controller
     {
         
         var result = await _contactFeatureService.AddOrUpdateContactFeaturesAsync(model);
+
+        if (result.Success == false)
+            return new BadRequestObjectResult(result);
 
         return Json(result);
     }

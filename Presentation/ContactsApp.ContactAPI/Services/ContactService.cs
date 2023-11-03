@@ -5,12 +5,19 @@ using ContactsApp.ContactAPI.Models;
 using ContactsApp.Core.Results;
 
 namespace ContactsApp.ContactAPI.Services;
-
-public class ContactService
+public interface IContactService
 {
-    private readonly ContactRepository _contactRepository;
+    Task<BaseDataResponse<IEnumerable<Contact>>> GetContactsAsync();
+    Task<BaseDataResponse<Contact>> GetContactAsync(string id);
+    Task<BaseResponse> AddContactAsync(Contact contact);
+    Task<BaseResponse> UpdateContactAsync(Contact contact);
+    Task<BaseResponse> DeleteContactAsync(string id);
+}
+public class ContactService: IContactService
+{
+    private readonly IContactRepository _contactRepository;
 
-    public ContactService(ContactRepository contactRepository)
+    public ContactService(IContactRepository contactRepository)
     {
         _contactRepository = contactRepository;
     }
@@ -24,13 +31,22 @@ public class ContactService
 
     public async Task<BaseDataResponse<Contact>> GetContactAsync(string id)
     {
+        if(string.IsNullOrEmpty(id) == true)
+            return new BaseDataResponse<Contact>(default, false, "Id cannot be null");
+
         var result = await _contactRepository.GetContactAsync(id);
+
+        if(result is null || result.FirstName is null)
+            return new BaseDataResponse<Contact>(default, false, "Contact not found");
 
         return new BaseDataResponse<Contact>(result, true);
     }
 
     public async Task<BaseResponse> AddContactAsync(Contact contact)
     {
+        if (contact is null || contact.FirstName is null)
+            return new BaseResponse(false, "FirstName cannot be null");
+
         var result = await _contactRepository.AddContactAsync(contact);
 
         if (!result)
@@ -42,6 +58,10 @@ public class ContactService
 
     public async Task<BaseResponse> UpdateContactAsync(Contact contact)
     {
+
+        if (contact is null || contact.FirstName is null)
+            return new BaseResponse(false, "FirstName cannot be null");
+
         var result = await _contactRepository.UpdateContactAsync(contact);
 
         if (!result)
@@ -52,6 +72,9 @@ public class ContactService
 
     public async Task<BaseResponse> DeleteContactAsync(string id)
     {
+        if(string.IsNullOrEmpty(id) == true)
+            return new BaseResponse(false, "Id cannot be null");
+
         var result = await _contactRepository.DeleteContactAsync(id);
 
         if (!result)

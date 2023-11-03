@@ -5,11 +5,20 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace ContactsApp.ContactAPI.Repositories;
 
-public class ContactRepository
+public interface IContactRepository
 {
-    private readonly ContactContext _context;
+    Task<IEnumerable<Contact>> GetContactsAsync();
+    Task<Contact> GetContactAsync(string id);
+    Task<bool> AddContactAsync(Contact contact);
+    Task<bool> UpdateContactAsync(Contact contact);
+    Task<bool> DeleteContactAsync(string id);
+}
 
-    public ContactRepository(ContactContext context)
+public class ContactRepository: IContactRepository
+{
+    private readonly IContactContext _context;
+
+    public ContactRepository(IContactContext context)
     {
         _context = context;
     }

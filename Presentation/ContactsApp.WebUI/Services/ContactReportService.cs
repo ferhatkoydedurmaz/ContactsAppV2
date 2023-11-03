@@ -4,7 +4,13 @@ using ContactsApp.WebUI.Models;
 
 namespace ContactsApp.WebUI.Services;
 
-public class ContactReportService
+public interface IContactReportService
+{
+    Task<BaseDataResponse<IEnumerable<ContactReport>>> GetAllReportAsync();
+    Task<BaseDataResponse<IEnumerable<ContactReportDetail>>> GetContactReportDetailAsync(string reportId);
+    Task<BaseDataResponse<string>> CreateContactReportAsync();
+}
+public class ContactReportService: IContactReportService
 {
     private readonly BaseService _baseService;
 

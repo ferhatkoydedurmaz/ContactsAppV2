@@ -4,7 +4,12 @@ using ContactsApp.WebUI.Models;
 
 namespace ContactsApp.WebUI.Services;
 
-public class ContactFeatureService
+public interface IContactFeatureService
+{
+    Task<BaseDataResponse<IEnumerable<ContactFeature>>> GetContactFeaturesByContactIdAsync(string id);
+    Task<BaseDataResponse<ContactFeatureList>> AddOrUpdateContactFeaturesAsync(ContactFeatureList model);
+}
+public class ContactFeatureService: IContactFeatureService
 {
     private readonly BaseService _baseService;
 
