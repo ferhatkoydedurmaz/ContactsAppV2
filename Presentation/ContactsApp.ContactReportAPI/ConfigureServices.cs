@@ -16,7 +16,8 @@ public static class ConfigureServices
             opt.UseNpgsql(configuration.GetConnectionString("defaultConnStr"));
         });
 
-        services.AddSingleton<IContactReportContext, ContactReportContext>();
+        services.AddScoped<IContactReportContext, ContactReportContext>();
+
         services.AddSingleton<IQueueServiceHelper, QueueServiceHelper>();
 
         services.AddScoped<IContactReportDetailRepository,ContactReportDetailRepository>();

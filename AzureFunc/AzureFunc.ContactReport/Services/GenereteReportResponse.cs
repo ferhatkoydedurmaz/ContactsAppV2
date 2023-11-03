@@ -54,7 +54,7 @@ public class GenereteReportResponse
 
                 foreach (var contactId in contactIds)
                 {
-                    if (features.Any(w => w.ContactId == contactId && w.FeatureType == "PHONE" && (w.FeatureInformation is not null || w.FeatureInformation != "")) == true)
+                    if (features.Any(w => w.ContactId == contactId && w.FeatureType == "PHONE" && string.IsNullOrEmpty(w.FeatureInformation) == false) == true)
                         phoneCount++;
                 }
 
