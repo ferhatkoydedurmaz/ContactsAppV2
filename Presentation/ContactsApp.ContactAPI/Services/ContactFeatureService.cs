@@ -26,7 +26,7 @@ public class ContactFeatureService: IContactFeatureService
 
             var result = await _contactFeatureRepository.GetContactFeaturesByContactIdAsync(contactId);
 
-            return new BaseDataResponse<IEnumerable<ContactFeature>>(result, true);
+            return new BaseDataResponse<IEnumerable<ContactFeature>>(result, true, message:null);
         }
         catch
         {
@@ -53,7 +53,7 @@ public class ContactFeatureService: IContactFeatureService
                 }
             }
 
-            return new BaseDataResponse<ContactFeatureList>(model, true);
+            return new BaseDataResponse<ContactFeatureList>(model, true, message:null);
         }
         catch
         {
