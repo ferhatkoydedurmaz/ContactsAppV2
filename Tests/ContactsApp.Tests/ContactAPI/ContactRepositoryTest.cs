@@ -47,25 +47,6 @@ public class ContactRepositoryTest
         Assert.Equal(_contactId, result.Id);
     }
 
-    //[Fact]
-    //public async Task DeleteContactAsync_ContactExists_ReturnsTrue()
-    //{
-    //    // Arrange
-
-    //    _contactContext.Setup(c => c.Contacts).Returns(_dbSet.Object);
-    //    _dbSet.Setup(s => s.FindAsync(It.IsAny<object[]>())).ReturnsAsync(new Contact { Id = _contactId });
-    //    _contactContext.Setup(c => c.SaveChangesAsync()).ReturnsAsync(1); // Simulate a successful save.
-
-    //    // Act
-    //    var result = await _contactRepository.DeleteContactAsync(_contactId.ToString());
-
-    //    //Assert
-    //    Assert.True(true);
-    //    _dbSet.Verify(s => s.FindAsync(It.IsAny<object[]>()), Times.Once());
-    //    _dbSet.Verify(s => s.Remove(It.IsAny<Contact>()), Times.Once());
-    //    _contactContext.Verify(c => c.SaveChangesAsync(), Times.Once());
-    //}
-
     [Fact]
     public async Task DeleteContactAsync_ContactDoesNotExist_ReturnsFalse()
     {

@@ -21,7 +21,7 @@ public class ContactFeatureServiceTest
     {
         // Arrange
         var contactId = "validContactId";
-        var contactFeatures = new List<ContactFeature>(); // Replace with your sample data
+        var contactFeatures = new List<ContactFeature>();
         _contactFeatureRepository.Setup(r => r.GetContactFeaturesByContactIdAsync(contactId))
             .ReturnsAsync(contactFeatures);
 
@@ -38,9 +38,9 @@ public class ContactFeatureServiceTest
     public async Task AddOrUpdateAsync_WithValidModel_ReturnsSuccessResponse()
     {
         // Arrange
-        var model = new ContactFeatureList(); // Replace with your sample data
+        var model = new ContactFeatureList(); 
         _contactFeatureRepository.Setup(r => r.GetByContactIdAndFeatureType(It.IsAny<string>(), It.IsAny<string>()))
-            .ReturnsAsync((ContactFeature)null); // Simulate not finding a contact feature
+            .ReturnsAsync((ContactFeature)null);
         _contactFeatureRepository.Setup(r => r.AddAsync(It.IsAny<ContactFeature>()))
             .ReturnsAsync(true);
         _contactFeatureRepository.Setup(r => r.UpdateAsync(It.IsAny<ContactFeature>()))

@@ -89,7 +89,7 @@ public class WebUIControllerTest
     public async Task UpdateContact_WithValidModel_ReturnsJsonResult()
     {
         // Arrange
-        _controller.ModelState.AddModelError("SomeField", "Some error message"); // Simulate ModelState error.
+        _controller.ModelState.AddModelError("SomeField", "Some error message");
 
         // Act
         var result = await _controller.UpdateContact(_contact) as BadRequestObjectResult;

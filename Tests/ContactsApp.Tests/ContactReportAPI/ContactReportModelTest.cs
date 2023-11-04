@@ -8,7 +8,7 @@ public class ContactReportModelTest
     {
         // Arrange
         var contactReport = new ContactReport();
-        var statusId = 1; // Set a status ID.
+        var statusId = 1;
 
         // Act
         contactReport.StatusId = statusId;

@@ -8,7 +8,7 @@ public class CoreModelTest
     {
         // Arrange And Act
         var baseResponse = new BaseResponse(true);
-        var success = true; // Set success value.
+        var success = true;
 
         // Assert
         Assert.Equal(success, baseResponse.Success);
@@ -20,7 +20,7 @@ public class CoreModelTest
         // Arrange
         var baseResponse = new BaseResponse(true);
 
-        var message = "test mesaj"; // Set a message.
+        var message = "test mesaj";
         // Act
         baseResponse.Message = message;
 
@@ -63,7 +63,7 @@ public class CoreModelTest
     {
         // Arrange And Act
         var dataResponse = new BaseDataResponse<string>("test",true);
-        var data = "test"; // Set sample data.
+        var data = "test";
 
         // Assert
         Assert.Equal(data, dataResponse.Data);
@@ -74,7 +74,7 @@ public class CoreModelTest
     {
         // Arrange And
         var dataResponse = new BaseDataResponse<int>(42,true);
-        var data = 42; // Set an integer data.
+        var data = 42;
 
         // Assert
         Assert.Equal(data, dataResponse.Data);
